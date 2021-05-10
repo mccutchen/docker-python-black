@@ -1,6 +1,6 @@
 FROM python:3-slim
 
-ENV BLACK_VERSION 21.4b2
+ENV BLACK_VERSION 21.5b0
 
 RUN pip install --no-cache-dir black==${BLACK_VERSION}
 
