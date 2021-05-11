@@ -1,10 +1,17 @@
 # docker-python-black
 
-> Source for [mccutchen/python-black][] docker image
+> Source for the [mccutchen/python-black][] docker image
 
 A minimal docker image for running Python's [black] code formatter, useful in
-CI pipelines or other situations where avoiding local Python (and virtualenv,
-etc) installation is ideal.
+CI pipelines or other situations where avoiding local Python/virtualenv/etc
+installation is ideal.
+
+
+## Automated builds
+
+A new image is published automatically for every new release of black. See the
+[bin/update][] script and the [Track upstream releases][workflow] workflow for
+implementation details.
 
 ## Usage
 
@@ -32,3 +39,4 @@ Here are some other public images to consider:
 [kiwicom/black]: https://hub.docker.com/r/kiwicom/black
 [cytopia/black]: https://hub.docker.com/r/cytopia/black
 [houzefaabba/python3-black]: https://hub.docker.com/r/houzefaabba/python3-black
+[bin/update]: ./bin/update
