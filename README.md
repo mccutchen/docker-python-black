@@ -40,3 +40,4 @@ Here are some other public images to consider:
 [cytopia/black]: https://hub.docker.com/r/cytopia/black
 [houzefaabba/python3-black]: https://hub.docker.com/r/houzefaabba/python3-black
 [bin/update]: ./bin/update
+[workflow]: ./.github/workflows/track_upstream_releases.yaml
