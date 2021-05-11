@@ -19,6 +19,7 @@ if [ "${BLACK_VERSION:-}" = "" ]; then
         exit 1
     fi
 fi
+echo "Found latest black release ${BLACK_VERSION}"
 
 # Fetch a temporary docker auth token if necessary (the automated workflow
 # includes its own dedicated token).
@@ -36,10 +37,12 @@ DOCKER_IMAGE_DIGEST_CODE=$(curl -s -o /dev/null -w "%{http_code}" -H "Authorizat
 if [ "${DOCKER_IMAGE_DIGEST_CODE}" = "200" ]; then
     echo "Image ${DOCKER_REPO}:${BLACK_VERSION} already exists, skipping."
     exit 0
+else
+    echo "Image ${DOCKER_REPO}:${BLACK_VERSION} status: ${DOCKER_IMAGE_DIGEST_CODE}"
 fi
 
 # Otherwise, build and push a new image for the new black release.
-echo "Building verion ${BLACK_VERSION} as ${DOCKER_REPO}:${BLACK_VERSION} ..."
+echo "Building version ${BLACK_VERSION} as ${DOCKER_REPO}:${BLACK_VERSION} ..."
 docker build \
     -t "${DOCKER_REPO}:${BLACK_VERSION}" \
     -t "${DOCKER_REPO}:latest" \
