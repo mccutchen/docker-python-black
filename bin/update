@@ -49,8 +49,8 @@ docker build \
     --build-arg BLACK_VERSION="${BLACK_VERSION}" \
     "."
 
-echo "Pushing verion ${BLACK_VERSION} as ${DOCKER_REPO}:${BLACK_VERSION} ..."
+echo "Pushing version ${BLACK_VERSION} as ${DOCKER_REPO}:${BLACK_VERSION} ..."
 docker push "${DOCKER_REPO}:${BLACK_VERSION}"
 
-echo "Pushing verion ${BLACK_VERSION} as ${DOCKER_REPO}:latest ..."
+echo "Pushing version ${BLACK_VERSION} as ${DOCKER_REPO}:latest ..."
 docker push "${DOCKER_REPO}:latest"
