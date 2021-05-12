@@ -33,9 +33,15 @@ if [ "${DOCKERHUB_TOKEN:-}" = "" ]; then
     fi
 fi
 
+echo "XXX plain curl command:"
+curl -s -v -H "Authorization: Bearer ${DOCKERHUB_TOKEN}" -H "Accept: application/vnd.docker.distribution.manifest.v2+json" "https://registry.hub.docker.com/v2/${DOCKER_REPO}/manifests/${BLACK_VERSION}"
+
+echo "XXX curl http_code:"
+curl -s -o /dev/null -w "%{http_code}" -H "Authorization: Bearer ${DOCKERHUB_TOKEN}" -H "Accept: application/vnd.docker.distribution.manifest.v2+json" "https://registry.hub.docker.com/v2/${DOCKER_REPO}/manifests/${BLACK_VERSION}"
+
 # See if an image for this black release already exists. If so, we can exit
 # early, no more work to do.
-DOCKER_IMAGE_DIGEST_CODE=$(curl -s -o /dev/null -w "%{http_code}" -H "Authorization: Bearer $DOCKERHUB_TOKEN" -H "Accept: application/vnd.docker.distribution.manifest.v2+json" "https://registry.hub.docker.com/v2/${DOCKER_REPO}/manifests/${BLACK_VERSION}")
+DOCKER_IMAGE_DIGEST_CODE=$(curl -s -o /dev/null -w "%{http_code}" -H "Authorization: Bearer ${DOCKERHUB_TOKEN}" -H "Accept: application/vnd.docker.distribution.manifest.v2+json" "https://registry.hub.docker.com/v2/${DOCKER_REPO}/manifests/${BLACK_VERSION}")
 echo "Image ${DOCKER_REPO}:${BLACK_VERSION} status: ${DOCKER_IMAGE_DIGEST_CODE}"
 if [ "${DOCKER_IMAGE_DIGEST_CODE}" = "200" ]; then
     echo "Image ${DOCKER_REPO}:${BLACK_VERSION} already exists, skipping."
