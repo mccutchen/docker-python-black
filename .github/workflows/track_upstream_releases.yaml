@@ -2,7 +2,7 @@ name: Track upstream releases
 
 on:
   schedule:
-    - cron:  '*/5 * * * *'
+    - cron:  '*/10 * * * *'
 
 jobs:
   scheduled:
