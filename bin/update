@@ -25,12 +25,10 @@ echo "Found latest black release ${BLACK_VERSION}"
 
 # Fetch a temporary docker auth token if necessary (the automated workflow
 # includes its own dedicated token).
-if [ "${DOCKERHUB_TOKEN:-}" = "" ]; then
-    DOCKERHUB_TOKEN=$(curl -s "https://auth.docker.io/token?scope=repository:${DOCKER_REPO}:pull&service=registry.docker.io" | jq -r '.token')
-    if [ "${DOCKERHUB_TOKEN}" = "" ]; then
-        echo "Could not get docker auth token for repo ${DOCKER_REPO}"
-        exit 1
-    fi
+DOCKERHUB_TOKEN=$(curl -s "https://auth.docker.io/token?scope=repository:${DOCKER_REPO}:pull&service=registry.docker.io" | jq -r '.token')
+if [ "${DOCKERHUB_TOKEN}" = "" ]; then
+    echo "Could not get docker auth token for repo ${DOCKER_REPO}"
+    exit 1
 fi
 
 echo "XXX plain curl command:"
