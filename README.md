@@ -1,3 +1,37 @@
+# ⚠️ Deprecation Notice ⚠️
+
+This repo has been retired, because the upstream [psf/black project](https://github.com/psf/black)
+now publishes an official docker image on Docker Hub at [pyfound/black](https://hub.docker.com/r/pyfound/black):
+
+```bash
+# pull a specific version
+docker pull pyfound/black:22.6.0
+
+# pull latest released version
+docker pull pyfound/black:latest_release
+```
+
+Please use that official image instead of `mccutchen/python-black`.  **No new
+images will be pushed from this repository.**
+
+## Quick migration guide
+
+If migrating from mccutchen/python-black to pyfound/black, note that you'll
+need to add `black` to the command line itself:
+
+```diff
+- docker run --rm -v $(pwd):/src mccutchen/python-black --check --diff /src
++ docker run --rm -v $(pwd):/src pyfound/black black --check --diff /src
+```
+
+<br>
+
+_Original README preseved for posterity below._
+
+---
+
+<br>
+
 # docker-python-black
 
 > Source for the [mccutchen/python-black][] docker image
